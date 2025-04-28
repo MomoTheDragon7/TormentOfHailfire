@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Stats Calculator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .category {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: inline-block; /* To allow for horizontal arrangement if desired */
+            vertical-align: top;
+            margin-right: 20px;
+        }
+        div {
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            padding: 8px;
+            margin: 5px;
+            width: 120px; /* Slightly wider to fit the new labels */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Player Stats Calculator</h1>
+
+    <div class="category">
+        <h2>Player A</h2>
+        <div>
+            <label for="num1_cat1">Life Total:</label>
+            <input type="number" id="num1_cat1">
+        </div>
+        <div>
+            <label for="num2_cat1">Cards Plus Nonland Count:</label>
+            <input type="number" id="num2_cat1">
+        </div>
+        <button onclick="calculateEquation(1)">Calculate Player A</button>
+        <div id="result_cat1" class="result"></div>
+    </div>
+
+    <div class="category">
+        <h2>Player B</h2>
+        <div>
+            <label for="num1_cat2">Life Total:</label>
+            <input type="number" id="num1_cat2">
+        </div>
+        <div>
+            <label for="num2_cat2">Cards Plus Nonland Count:</label>
+            <input type="number" id="num2_cat2">
+        </div>
+        <button onclick="calculateEquation(2)">Calculate Player B</button>
+        <div id="result_cat2" class="result"></div>
+    </div>
+
+    <div class="category">
+        <h2>Player C</h2>
+        <div>
+            <label for="num1_cat3">Life Total:</label>
+            <input type="number" id="num1_cat3">
+        </div>
+        <div>
+            <label for="num2_cat3">Cards Plus Nonland Count:</label>
+            <input type="number" id="num2_cat3">
+        </div>
+        <button onclick="calculateEquation(3)">Calculate Player C</button>
+        <div id="result_cat3" class="result"></div>
+    </div>
+
+    <script>
+        function calculateEquation(categoryNumber) {
+            // Get the values from the input fields for the specific category
+            var num1 = parseFloat(document.getElementById('num1_cat' + categoryNumber).value);
+            var num2 = parseFloat(document.getElementById('num2_cat' + categoryNumber).value);
+
+            // Check if the inputs are valid numbers
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result_cat' + categoryNumber).textContent = 'Please enter valid numbers.';
+                return;
+            }
+
+            // **Define your equation here:**
+            var unroundedOutput = (num1 / 3) + num2;
+
+            // Round the output up to the nearest integer
+            var output = Math.ceil(unroundedOutput);
+
+            // Display the output in the correct result div
+            document.getElementById('result_cat' + categoryNumber).textContent = 'Result (rounded up): ' + output;
+        }
+    </script>
+</body>
+</html>
